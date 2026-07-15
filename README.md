@@ -64,7 +64,7 @@ care-connect/
 
 ### Step 1: Clone or Download
 
-git clone https://github.com/fikerbelay/care-connect.git
+git clone https://github.com/fikerbelay/Care-Connect.git
 
 Or download the ZIP and extract it.
 
