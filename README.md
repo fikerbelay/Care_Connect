@@ -32,12 +32,19 @@ Built as a university project for Object-Oriented System Analysis & Design (OOSA
 
 care-connect/
 ├── index.html          # Patient search page
+
 ├── admin.html          # Hospital admin dashboard
+
 ├── style.css           # All styling
+
 ├── script.js           # Frontend JavaScript (API calls)
+
 ├── backend/
+
 │   ├── config.php      # Database connection settings
+
 │   └── api.php         # All API endpoints
+
 └── README.md           # This file
 
 ---
@@ -150,7 +157,7 @@ INSERT INTO hospitals (name, location, specialty, services, price_range, contact
 ('Bethel Hospital', 'Addis Ababa', 'Pediatrics', 'Child Care, Vaccinations', '200-1000 ETB', '+251955555555', 3.8);
 
 INSERT INTO users (full_name, email, password_hash, role, phone, location) VALUES
-('Fiker Belay', 'fiker@example.com', 'demohash', 'patient', '+251924310404', 'Dukem, Bishoftu');
+('Fiker Belay', 'fiker@example.com', 'demohash', 'patient', '+251924310404', 'a.a, a.a');
 
 ---
 
@@ -204,7 +211,3 @@ Fiker Belay Tsegaye
 - Email: fiker23sw@gmail.com
 - LinkedIn: linkedin.com/in/fiker-belay
 
-
----
-
-Built with ❤️ in Ethiopia
