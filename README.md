@@ -96,7 +96,7 @@ $password = '';       // Your MySQL password
 
 Open your browser and go to:
 
-http://localhost/care-connect/
+[http://localhost/care-connect/](http://localhost/Care_Connect-main)
 
 ---
 
