@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareConnect - Find the Right Hospital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🏥 CareConnect</h1>
+                <p>Find the right hospital for your needs</p>
+            </div>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="admin.html">Admin</a>
+                <a href="#" id="loginBtn">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Find Your Perfect Hospital Match</h2>
+            <p>Enter your symptoms, budget, and location to find the best hospital for you.</p>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="search-card">
+                <h3>Search Hospitals</h3>
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="symptoms">Symptoms / Medical Condition</label>
+                        <input type="text" id="symptoms" placeholder="e.g., Fever, headache, chest pain" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Your Budget (ETB)</label>
+                        <input type="number" id="budget" placeholder="e.g., 500" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Your Location</label>
+                        <input type="text" id="location" placeholder="e.g., Addis Ababa, Bole" required>
+                    </div>
+                    <button type="submit" class="btn-primary">🔍 Find Hospitals</button>
+                </form>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <h3>Matching Hospitals</h3>
+                <div id="resultsList"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CareConnect - Smart Hospital Matching System</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
