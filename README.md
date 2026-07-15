@@ -45,6 +45,12 @@ care-connect/
 
 │   └── api.php         # All API endpoints
 
+├── docs/               # Full project documentation
+
+│   ├── CareConnect_OOSAD_Report.pdf
+
+│   └── CareConnect_SPM_Report.pdf
+
 └── README.md           # This file
 
 ---
