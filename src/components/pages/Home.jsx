@@ -67,13 +67,44 @@ const ethiopianHospitals = [
 function Home() {
   const navigate = useNavigate();
 
+  // 🔐 Redirect to login if not authenticated
+  const handleAction = (action, target) => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      navigate('/login', { state: { from: window.location.pathname, action } });
+      return;
+    }
+    // If logged in, proceed
+    if (target) {
+      navigate(target);
+    } else if (action === 'hospital') {
+      // handled by the hospital card click
+    }
+  };
+
   const handleHospitalClick = (hospitalId) => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      navigate('/login', { state: { from: '/hospitals', action: `view-hospital-${hospitalId}` } });
+      return;
+    }
     navigate(`/hospital/${hospitalId}`);
+  };
+
+  // Wrapper for any Link that needs to check login
+  const handleLinkClick = (e, target) => {
+    e.preventDefault();
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      navigate('/login', { state: { from: window.location.pathname, action: target } });
+      return;
+    }
+    navigate(target);
   };
 
   return (
     <div>
-      {/* HERO SECTION */}
+      {/* ===== HERO SECTION ===== */}
       <section className="hero-section">
         <div className="container">
           <div className="hero-grid">
@@ -87,12 +118,20 @@ function Home() {
                 from one secure platform.
               </p>
               <div className="hero-buttons">
-                <Link to="/appointments" className="btn-primary-hero">
+                {/* Book Appointment - redirects to login */}
+                <button
+                  className="btn-primary-hero"
+                  onClick={() => handleAction('book-appointment', '/appointments')}
+                >
                   <i className="fas fa-calendar-check"></i> Book Appointment
-                </Link>
-                <Link to="/hospitals" className="btn-secondary-hero">
+                </button>
+                {/* Find Hospitals - redirects to login */}
+                <button
+                  className="btn-secondary-hero"
+                  onClick={() => handleAction('find-hospitals', '/hospitals')}
+                >
                   <i className="fas fa-search"></i> Find Hospitals
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -125,35 +164,64 @@ function Home() {
         </div>
       </section>
 
-      {/* QUICK ACTIONS */}
+      {/* ===== QUICK ACTIONS ===== */}
       <section className="quick-actions">
         <div className="container">
           <div className="quick-actions-grid">
-            <Link to="/hospitals" className="quick-action-card">
+            {/* Find Hospitals */}
+            <div
+              className="quick-action-card"
+              onClick={() => handleAction('find-hospitals', '/hospitals')}
+            >
               <span className="qa-icon">🏥</span>
               <h3>Find Hospitals</h3>
               <p>Search hospitals nearby</p>
-            </Link>
-            <Link to="/appointments" className="quick-action-card">
+            </div>
+            {/* Book Appointment */}
+            <div
+              className="quick-action-card"
+              onClick={() => handleAction('book-appointment', '/appointments')}
+            >
               <span className="qa-icon">📅</span>
               <h3>Book Appointment</h3>
               <p>Choose your doctor</p>
-            </Link>
-            <Link to="/emergency" className="quick-action-card">
+            </div>
+            {/* Emergency Contacts */}
+            <div
+              className="quick-action-card"
+              onClick={() => handleAction('emergency', '/emergency')}
+            >
               <span className="qa-icon">🚑</span>
               <h3>Emergency Contacts</h3>
               <p>Immediate assistance</p>
-            </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FEATURED HOSPITALS */}
+      {/* ===== FEATURED HOSPITALS ===== */}
       <section className="hospitals-section">
         <div className="container">
           <div className="section-header">
             <h2>Featured Hospitals</h2>
-            <Link to="/hospitals">View All →</Link>
+            {/* View All - redirects to login */}
+            <button
+              className="view-all-link"
+              onClick={() => handleAction('view-all-hospitals', '/hospitals')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-secondary)',
+                fontWeight: '600',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'var(--transition)'
+              }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+            >
+              View All →
+            </button>
           </div>
 
           <div className="hospitals-grid">
@@ -182,7 +250,10 @@ function Home() {
                     <span className="availability">
                       <i className="fas fa-circle"></i> Open 24 Hours
                     </span>
-                    <button className="btn-view">View Details</button>
+                    <button className="btn-view" onClick={(e) => {
+                      e.stopPropagation();
+                      handleHospitalClick(hospital.id);
+                    }}>View Details</button>
                   </div>
                 </div>
               </div>
@@ -191,7 +262,7 @@ function Home() {
         </div>
       </section>
 
-      {/* STATISTICS */}
+      {/* ===== STATISTICS ===== */}
       <section className="stats-section">
         <div className="container">
           <div className="stats-grid">
@@ -219,7 +290,7 @@ function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
+      {/* ===== WHY CHOOSE US ===== */}
       <section className="why-choose">
         <div className="container">
           <div className="section-header">
@@ -261,7 +332,7 @@ function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* ===== TESTIMONIALS ===== */}
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header">
