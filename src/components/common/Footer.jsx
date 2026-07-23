@@ -28,12 +28,6 @@ function Footer() {
               <li><a href="#">Specialist Referrals</a></li>
             </ul>
           </div>
-          <div className="footer-section">
-            <h3>Contact</h3>
-            <p><i className="fas fa-phone"></i> +44 20 1234 5678</p>
-            <p><i className="fas fa-envelope"></i> info@careconnect.co.uk</p>
-            <p><i className="fas fa-map-marker-alt"></i> London, UK</p>
-          </div>
         </div>
         <div className="footer-bottom">
           <p>&copy; 2026 CareConnect - NHS-Approved Hospital Matching System</p>
